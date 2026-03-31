@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Idle Champions Specialization Picker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0f0e17;
+      --bg-card: #1a1926;
+      --bg-input: #252336;
+      --accent-gold: #e8a948;
+      --accent-gold-dim: #b8862e;
+      --accent-green: #27c93f;
+      --text-primary: #fffffe;
+      --text-secondary: #a7a9be;
+      --text-muted: #6b6d80;
+      --border: #2e2c42;
+      --shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+      --radius: 10px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      font-family: 'Source Sans 3', sans-serif;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    header {
+      text-align: center;
+      padding: 3rem 1rem 2rem;
+      background: linear-gradient(180deg, #1c1a2e 0%, var(--bg-dark) 100%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    header h1 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.5rem, 4vw, 2.4rem);
+      color: var(--accent-gold);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.4rem;
+    }
+
+    header p {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      max-width: 540px;
+      margin: 0 auto;
+    }
+
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2rem 1rem 4rem;
+    }
+
+    .champion-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.8rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow);
+      transition: border-color 0.2s;
+    }
+
+    .champion-card:hover {
+      border-color: var(--accent-gold-dim);
+    }
+
+    .champion-header {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      margin-bottom: 0.3rem;
+      flex-wrap: wrap;
+    }
+
+    .champion-name {
+      font-family: 'Cinzel', serif;
+      font-size: 1.5rem;
+      color: var(--accent-gold);
+    }
+
+    .champion-meta {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .champion-meta a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      border-bottom: 1px dashed var(--text-muted);
+      transition: color 0.15s;
+    }
+
+    .champion-meta a:hover {
+      color: var(--accent-gold);
+    }
+
+    .no-data-msg {
+      color: var(--text-muted);
+      font-style: italic;
+      margin-top: 0.5rem;
+    }
+
+    .spec-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1.2rem;
+    }
+
+    .spec-item {
+      background: var(--bg-input);
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      transition: border-color 0.25s, box-shadow 0.25s;
+    }
+
+    .spec-item.winner {
+      border-color: var(--accent-gold);
+      box-shadow: 0 0 16px rgba(232, 169, 72, 0.15);
+    }
+
+    .spec-label {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-secondary);
+    }
+
+    .spec-item.winner .spec-label {
+      color: var(--accent-gold);
+    }
+
+    .tile-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 4px;
+      margin-top: 0.4rem;
+    }
+
+    .tile {
+      aspect-ratio: 1;
+      max-width: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-dark);
+      border: 2px solid var(--border);
+      border-radius: 6px;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.15s;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      padding: 0;
+    }
+
+    .tile:hover {
+      border-color: var(--accent-gold-dim);
+      color: var(--text-primary);
+      background: #1e1c30;
+    }
+
+    .tile:active {
+      transform: scale(0.92);
+    }
+
+    .tile.selected {
+      background: var(--accent-gold);
+      border-color: var(--accent-gold);
+      color: var(--bg-dark);
+    }
+
+    .tile.out-of-range {
+      opacity: 0.25;
+      cursor: default;
+    }
+
+    .tile.out-of-range:hover {
+      border-color: var(--border);
+      color: var(--text-secondary);
+      background: var(--bg-dark);
+    }
+
+    .spec-value {
+      margin-top: 0.6rem;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      min-height: 1.6em;
+    }
+
+    .spec-item.winner .spec-value {
+      color: var(--accent-green);
+    }
+
+    .recommendation {
+      margin-top: 1rem;
+      padding: 0.8rem 1rem;
+      border-radius: 8px;
+      background: rgba(232, 169, 72, 0.08);
+      border-left: 4px solid var(--accent-gold);
+      font-size: 1rem;
+      color: var(--text-secondary);
+      display: none;
+    }
+
+    .recommendation strong {
+      color: var(--accent-gold);
+    }
+
+    .recommendation .rec-value {
+      color: var(--accent-green);
+      font-weight: 700;
+    }
+
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--text-secondary);
+      text-decoration: none;
+    }
+
+    @media (max-width: 480px) {
+      .spec-grid {
+        grid-template-columns: 1fr;
+      }
+      .champion-card {
+        padding: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Idle Champions Specialization Picker</h1>
+    <p>Enter your values for each specialization to find which one maximizes your power.</p>
+  </header>
+
+  <main id="app">
+    <p style="color: var(--text-muted);">Loading champion data&hellip;</p>
+  </main>
+
+  <footer>
+    Data sourced from community guides on <a href="https://www.reddit.com/r/idlechampions/" target="_blank" rel="noopener">r/idlechampions</a>
+  </footer>
+
+  <script>
+    const DATA_URL = 'data/champions.json';
+
+    function formatPercent(num) {
+      return num.toLocaleString() + '%';
+    }
+
+    function getRange(table) {
+      const keys = Object.keys(table).map(Number).sort((a, b) => a - b);
+      return { min: keys[0], max: keys[keys.length - 1] };
+    }
+
+    function renderChampion(champ) {
+      const card = document.createElement('div');
+      card.className = 'champion-card';
+
+      const hasData = champ.specializations.length > 0 && Object.keys(champ.table).length > 0;
+
+      card.innerHTML = `
+        <div class="champion-header">
+          <span class="champion-name">${champ.name}</span>
+          <span class="champion-meta">Seat ${champ.seat} &middot; ${champ.class}
+            &middot; <a href="${champ.guide_url}" target="_blank" rel="noopener">Guide</a>
+          </span>
+        </div>
+        ${hasData ? '' : '<p class="no-data-msg">Specialization data coming soon.</p>'}
+      `;
+
+      if (!hasData) return card;
+
+      const range = getRange(champ.table);
+
+      const grid = document.createElement('div');
+      grid.className = 'spec-grid';
+
+      const specItems = champ.specializations.map((specName, idx) => {
+        const item = document.createElement('div');
+        item.className = 'spec-item';
+
+        const maxTile = Math.ceil(range.max / 5) * 5;
+        const tiles = [];
+        for (let n = 1; n <= maxTile; n++) tiles.push(n);
+
+        const hasValueAt = (num) => {
+          const row = champ.table[String(num)];
+          return row && row[idx] != null;
+        };
+
+        const tilesHTML = tiles.map(n => {
+          const inRange = n >= range.min && n <= range.max && hasValueAt(n);
+          return `<button type="button" class="tile${inRange ? '' : ' out-of-range'}" data-spec-idx="${idx}" data-val="${n}" ${inRange ? '' : 'tabindex="-1"'} aria-label="${specName} value ${n}">${n}</button>`;
+        }).join('');
+
+        item.innerHTML = `
+          <div class="spec-label">${specName}</div>
+          <div class="tile-grid">${tilesHTML}</div>
+          <div class="spec-value" data-result="${champ.name}-${idx}">&mdash;</div>
+        `;
+        return item;
+      });
+
+      specItems.forEach(item => grid.appendChild(item));
+      card.appendChild(grid);
+
+      const rec = document.createElement('div');
+      rec.className = 'recommendation';
+      rec.setAttribute('data-rec', champ.name);
+      card.appendChild(rec);
+
+      return card;
+    }
+
+    function evaluate(champ, inputs) {
+      const results = champ.specializations.map((name, idx) => {
+        const val = inputs[idx];
+        if (val == null || !champ.table[String(val)]) return { name, idx, value: null };
+        return { name, idx, value: champ.table[String(val)][idx] };
+      });
+
+      let bestIdx = -1;
+      let bestVal = -Infinity;
+      let allFilled = true;
+
+      results.forEach(r => {
+        if (r.value == null) {
+          allFilled = false;
+        } else if (r.value > bestVal) {
+          bestVal = r.value;
+          bestIdx = r.idx;
+        }
+      });
+
+      return { results, bestIdx, bestVal, allFilled };
+    }
+
+    async function init() {
+      const app = document.getElementById('app');
+      let data;
+
+      try {
+        const resp = await fetch(DATA_URL);
+        data = await resp.json();
+      } catch (e) {
+        app.innerHTML = '<p style="color:#ff6b6b;">Failed to load champion data.</p>';
+        return;
+      }
+
+      app.innerHTML = '';
+
+      const state = {};
+
+      data.champions.forEach(champ => {
+        state[champ.name] = new Array(champ.specializations.length).fill(null);
+        const card = renderChampion(champ);
+        app.appendChild(card);
+
+        card.addEventListener('click', (e) => {
+          const tile = e.target.closest('.tile');
+          if (!tile || tile.classList.contains('out-of-range')) return;
+          const specIdx = parseInt(tile.dataset.specIdx, 10);
+          const val = parseInt(tile.dataset.val, 10);
+
+          const grid = tile.closest('.tile-grid');
+          grid.querySelectorAll('.tile').forEach(t => t.classList.remove('selected'));
+          tile.classList.add('selected');
+
+          state[champ.name][specIdx] = val;
+          update(champ, card);
+        });
+      });
+
+      function update(champ, card) {
+        const { results, bestIdx, bestVal, allFilled } = evaluate(champ, state[champ.name]);
+        const items = card.querySelectorAll('.spec-item');
+        const rec = card.querySelector(`[data-rec="${champ.name}"]`);
+
+        items.forEach((item, idx) => {
+          const display = item.querySelector(`[data-result="${champ.name}-${idx}"]`);
+          const r = results[idx];
+
+          item.classList.remove('winner');
+
+          if (r.value != null) {
+            display.textContent = formatPercent(r.value);
+          } else {
+            display.innerHTML = '&mdash;';
+          }
+        });
+
+        if (bestIdx >= 0 && allFilled) {
+          items[bestIdx].classList.add('winner');
+          rec.innerHTML = `Choose <strong>${results[bestIdx].name}</strong> at <span class="rec-value">${formatPercent(bestVal)}</span> damage boost`;
+          rec.style.display = 'block';
+        } else if (bestIdx >= 0) {
+          items[bestIdx].classList.add('winner');
+          rec.innerHTML = `Current best: <strong>${results[bestIdx].name}</strong> at <span class="rec-value">${formatPercent(bestVal)}</span> &mdash; fill all values for final recommendation`;
+          rec.style.display = 'block';
+        } else {
+          rec.style.display = 'none';
+        }
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>

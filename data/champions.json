@@ -1,0 +1,85 @@
+{
+  "champions": [
+    {
+      "name": "Anson",
+      "seat": 1,
+      "class": "Human Fighter",
+      "guide_url": "https://www.reddit.com/r/idlechampions/comments/1q6tyr4/year_9_champion_guide_anson_the_human_fighter/",
+      "specializations": ["Pure of Heart", "Found Family", "Never Surrender"],
+      "table": {
+        "2":  [300, 406, 800],
+        "3":  [700, 1039, 2600],
+        "4":  [1500, 2463, 8000],
+        "5":  [3100, 5666, 24200],
+        "6":  [6300, 12875, 72800],
+        "7":  [12700, 29093, 218600],
+        "8":  [25500, 65584, 656000],
+        "9":  [51100, 147689, 1968200],
+        "10": [102300, 332426, 5904800],
+        "11": [204700, 748083, 17714600]
+      }
+    },
+    {
+      "name": "Lark",
+      "seat": 6,
+      "class": "Tiefling Bard",
+      "guide_url": "https://www.reddit.com/r/idlechampions/comments/1pdir3h/year_9_champion_guide_lark_the_tiefling_bard/",
+      "specializations": ["Band of Misfits", "Center of Attention", "Path of Nightmares"],
+      "table": {
+        "2":  [300, 756, 525],
+        "3":  [700, 2080, 1463],
+        "4":  [1500, 5719, 3806],
+        "5":  [3100, 15728, 9666],
+        "6":  [6300, 43251, 24314],
+        "7":  [12700, 118940, 60935],
+        "8":  [25500, 327086, 152488],
+        "9":  [51100, 899486, 381370],
+        "10": [102300, 2473586, 953574],
+        "11": [204700, 6802260, 2384086],
+        "12": [409500, null, null],
+        "13": [819100, null, null],
+        "14": [1638300, null, null],
+        "15": [3276700, null, null]
+      }
+    },
+    {
+      "name": "Tess",
+      "seat": 8,
+      "class": "Wood Elf Rogue",
+      "guide_url": "https://www.reddit.com/r/idlechampions/comments/1lq6sdu/year_8_champion_guide_tess_the_wood_elf_rogue/",
+      "specializations": ["The Fallback Plan", "Eyes on the Horizon", "Rogues' Gallery"],
+      "table": {
+        "2":  [300, 525, 756],
+        "3":  [700, 1463, 2080],
+        "4":  [1500, 3806, 5719],
+        "5":  [3100, 9666, 15728],
+        "6":  [6300, 24314, 43251],
+        "7":  [12700, 60935, 118940],
+        "8":  [25500, 152488, 327086],
+        "9":  [51100, 381370, 899486],
+        "10": [102300, 953574, 2473586]
+      }
+    },
+    {
+      "name": "King of Shadows",
+      "seat": 9,
+      "class": "Human Wizard",
+      "guide_url": "https://www.reddit.com/r/idlechampions/comments/1nvjj7p/year_9_champion_guide_king_of_shadows_the_human/",
+      "specializations": ["Legacy of Illefarn", "Embrace the Shadow Weave", "Rites of Survival"],
+      "table": {
+        "2":  [300, 800, 1500],
+        "3":  [700, 2600, 6300],
+        "4":  [1500, 5000, 25500],
+        "5":  [3100, 15200, 102300],
+        "6":  [6300, 45800, 409500],
+        "7":  [12700, 137600, 1638300],
+        "8":  [25500, 413000, 6553500],
+        "9":  [51100, 1239200, 26214300],
+        "10": [102300, 3717800, 104857500],
+        "11": [204700, 17714600, 419430300],
+        "12": [409500, null, null],
+        "13": [819100, null, null]
+      }
+    }
+  ]
+}
