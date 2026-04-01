@@ -1,6 +1,25 @@
 {
   "champions": [
     {
+      "name": "Donaar",
+      "seat": 2,
+      "class": "Dragonborn Paladin",
+      "guide_url": "https://www.reddit.com/r/idlechampions/comments/11vynot/year_2_champion_guide_donaar_the_dragonborn/",
+      "specializations": ["Not So Straightforward", "Scales and Horns", "Business Partners"],
+      "table": {
+        "2":  [300, 406, 525],
+        "3":  [700, 1039, 1463],
+        "4":  [1500, 2463, 3806],
+        "5":  [3100, 5666, 9666],
+        "6":  [6300, 12875, 24314],
+        "7":  [12700, 29093, 60935],
+        "8":  [25500, 65584, 152488],
+        "9":  [51100, 147689, 381370],
+        "10": [102300, 332426, 953574],
+        "11": [204700, 748083, 2384086]
+      }
+    },
+    {
       "name": "Anson",
       "seat": 1,
       "class": "Human Fighter",
