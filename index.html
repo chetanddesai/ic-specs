@@ -234,6 +234,72 @@
     }
 
 
+    .seat-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 1.8rem;
+    }
+
+    .seat-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem 0.4rem;
+      min-width: 56px;
+      flex: 0 1 auto;
+      background: var(--bg-card);
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s;
+      font-family: inherit;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .seat-btn .seat-num {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      line-height: 1;
+    }
+
+    .seat-btn .seat-name {
+      font-size: 0.6rem;
+      color: var(--text-muted);
+      line-height: 1;
+      margin-top: 3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+      padding: 0 2px;
+    }
+
+    .seat-btn.empty {
+      opacity: 0.25;
+      cursor: default;
+    }
+
+    .seat-btn.available:hover {
+      border-color: var(--accent-gold-dim);
+    }
+
+    .seat-btn.available:active {
+      transform: scale(0.94);
+    }
+
+    .seat-btn.active {
+      background: var(--accent-gold);
+      border-color: var(--accent-gold);
+    }
+
+    .seat-btn.active .seat-num,
+    .seat-btn.active .seat-name {
+      color: var(--bg-dark);
+    }
+
     footer {
       text-align: center;
       padding: 2rem 1rem;
@@ -380,14 +446,69 @@
 
       app.innerHTML = '';
 
-      data.champions.sort((a, b) => a.seat - b.seat);
+      data.champions.sort((a, b) => a.seat - b.seat || a.name.localeCompare(b.name));
+
+      const champsBySeat = {};
+      data.champions.forEach(c => {
+        if (!champsBySeat[c.seat]) champsBySeat[c.seat] = [];
+        champsBySeat[c.seat].push(c);
+      });
+
+      const seatBar = document.createElement('div');
+      seatBar.className = 'seat-bar';
+      app.appendChild(seatBar);
+
+      const cardContainer = document.createElement('div');
+      app.appendChild(cardContainer);
 
       const state = {};
+      const cards = {};
+      const activeChamps = new Set();
+
+      for (let seat = 1; seat <= 12; seat++) {
+        const champs = champsBySeat[seat];
+
+        if (!champs) {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'seat-btn empty';
+          btn.innerHTML = `<span class="seat-num">${seat}</span><span class="seat-name">&mdash;</span>`;
+          btn.tabIndex = -1;
+          seatBar.appendChild(btn);
+          continue;
+        }
+
+        champs.forEach(champ => {
+          const isDefault = champ.default === true;
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'seat-btn available' + (isDefault ? ' active' : '');
+          btn.innerHTML = `<span class="seat-num">${seat}</span><span class="seat-name">${champ.name}</span>`;
+
+          if (isDefault) activeChamps.add(champ.name);
+
+          btn.addEventListener('click', () => {
+            if (activeChamps.has(champ.name)) {
+              activeChamps.delete(champ.name);
+              btn.classList.remove('active');
+              if (cards[champ.name]) cards[champ.name].style.display = 'none';
+            } else {
+              activeChamps.add(champ.name);
+              btn.classList.add('active');
+              if (cards[champ.name]) cards[champ.name].style.display = '';
+            }
+          });
+
+          seatBar.appendChild(btn);
+        });
+      }
 
       data.champions.forEach(champ => {
         state[champ.name] = new Array(champ.specializations.length).fill(null);
         const card = renderChampion(champ);
-        app.appendChild(card);
+        cards[champ.name] = card;
+        if (!activeChamps.has(champ.name)) card.style.display = 'none';
+        cardContainer.appendChild(card);
 
         card.addEventListener('click', (e) => {
           const tile = e.target.closest('.tile');

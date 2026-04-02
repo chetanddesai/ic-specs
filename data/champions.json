@@ -3,6 +3,7 @@
     {
       "name": "Donaar",
       "seat": 2,
+      "default": true,
       "class": "Dragonborn Paladin",
       "guide_url": "https://www.reddit.com/r/idlechampions/comments/11vynot/year_2_champion_guide_donaar_the_dragonborn/",
       "specializations": ["Not So Straightforward", "Scales and Horns", "Business Partners"],
@@ -20,8 +21,29 @@
       }
     },
     {
+      "name": "BBEG",
+      "seat": 3,
+      "default": true,
+      "class": "Drow Wizard",
+      "guide_url": "https://www.reddit.com/r/idlechampions/comments/143nyf9/year_6_champion_guide_bbeg_the_drow_wizard/",
+      "specializations": ["Powergaming", "Min-Maxing", "Rules Lawyering"],
+      "table": {
+        "2":  [800, 525, 300],
+        "3":  [2600, 1463, 700],
+        "4":  [8000, 3806, 1500],
+        "5":  [24200, 9666, 3100],
+        "6":  [72800, 24314, 6300],
+        "7":  [218600, 60935, 12700],
+        "8":  [656000, 152488, 25500],
+        "9":  [1968200, 381370, 51100],
+        "10": [5904800, 953574, 102300],
+        "11": [17714600, 2384086, 204700]
+      }
+    },
+    {
       "name": "Anson",
       "seat": 1,
+      "default": true,
       "class": "Human Fighter",
       "guide_url": "https://www.reddit.com/r/idlechampions/comments/1q6tyr4/year_9_champion_guide_anson_the_human_fighter/",
       "specializations": ["Pure of Heart", "Found Family", "Never Surrender"],
@@ -41,6 +63,7 @@
     {
       "name": "Lark",
       "seat": 6,
+      "default": true,
       "class": "Tiefling Bard",
       "guide_url": "https://www.reddit.com/r/idlechampions/comments/1pdir3h/year_9_champion_guide_lark_the_tiefling_bard/",
       "specializations": ["Band of Misfits", "Center of Attention", "Path of Nightmares"],
@@ -64,6 +87,7 @@
     {
       "name": "Tess",
       "seat": 8,
+      "default": true,
       "class": "Wood Elf Rogue",
       "guide_url": "https://www.reddit.com/r/idlechampions/comments/1lq6sdu/year_8_champion_guide_tess_the_wood_elf_rogue/",
       "specializations": ["The Fallback Plan", "Eyes on the Horizon", "Rogues' Gallery"],
@@ -82,6 +106,7 @@
     {
       "name": "King of Shadows",
       "seat": 9,
+      "default": true,
       "class": "Human Wizard",
       "guide_url": "https://www.reddit.com/r/idlechampions/comments/1nvjj7p/year_9_champion_guide_king_of_shadows_the_human/",
       "specializations": ["Legacy of Illefarn", "Embrace the Shadow Weave", "Rites of Survival"],

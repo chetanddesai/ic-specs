@@ -6,18 +6,20 @@ Specialization picker for [Idle Champions of the Forgotten Realms](https://www.i
 
 ## Bench
 
-| Seat | Champion | Class | Data |
-|------|----------|-------|------|
-| 1 | [Anson](https://www.reddit.com/r/idlechampions/comments/1q6tyr4/year_9_champion_guide_anson_the_human_fighter/) | Human Fighter | Ready |
-| 2 | [Donaar](https://www.reddit.com/r/idlechampions/comments/11vynot/year_2_champion_guide_donaar_the_dragonborn/) | Dragonborn Paladin | Ready |
-| 6 | [Lark](https://www.reddit.com/r/idlechampions/comments/1pdir3h/year_9_champion_guide_lark_the_tiefling_bard/) | Tiefling Bard | Ready |
-| 8 | [Tess](https://www.reddit.com/r/idlechampions/comments/1lq6sdu/year_8_champion_guide_tess_the_wood_elf_rogue/) | Wood Elf Rogue | Ready |
-| 9 | [King of Shadows](https://www.reddit.com/r/idlechampions/comments/1nvjj7p/year_9_champion_guide_king_of_shadows_the_human/) | Human Wizard | Ready |
+| Seat | Champion | Class | Default | Data |
+|------|----------|-------|---------|------|
+| 1 | [Anson](https://www.reddit.com/r/idlechampions/comments/1q6tyr4/year_9_champion_guide_anson_the_human_fighter/) | Human Fighter | Yes | Ready |
+| 2 | [Donaar](https://www.reddit.com/r/idlechampions/comments/11vynot/year_2_champion_guide_donaar_the_dragonborn/) | Dragonborn Paladin | Yes | Ready |
+| 3 | [BBEG](https://www.reddit.com/r/idlechampions/comments/143nyf9/year_6_champion_guide_bbeg_the_drow_wizard/) | Drow Wizard | Yes | Ready |
+| 6 | [Lark](https://www.reddit.com/r/idlechampions/comments/1pdir3h/year_9_champion_guide_lark_the_tiefling_bard/) | Tiefling Bard | Yes | Ready |
+| 8 | [Tess](https://www.reddit.com/r/idlechampions/comments/1lq6sdu/year_8_champion_guide_tess_the_wood_elf_rogue/) | Wood Elf Rogue | Yes | Ready |
+| 9 | [King of Shadows](https://www.reddit.com/r/idlechampions/comments/1nvjj7p/year_9_champion_guide_king_of_shadows_the_human/) | Human Wizard | Yes | Ready |
 
 ## Adding Champion Data
 
 Edit `data/champions.json`. Each champion entry has:
 
+- `default` — `true` if this champion should be pre-selected on page load. Multiple champions can share a seat; only defaults are shown initially.
 - `specializations` — array of specialization names (e.g. `["Pure of Heart", "Found Family", "Never Surrender"]`)
 - `table` — object keyed by the input number, with values as an array of percentages (as raw numbers, no commas) matching the specializations order
 
@@ -26,6 +28,8 @@ Example for a 3-spec champion:
 ```json
 {
   "name": "Anson",
+  "seat": 1,
+  "default": true,
   "specializations": ["Pure of Heart", "Found Family", "Never Surrender"],
   "table": {
     "2": [300, 406, 800],
