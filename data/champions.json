@@ -124,6 +124,25 @@
         "12": [409500, null, null],
         "13": [819100, null, null]
       }
+    },
+    {
+      "name": "Penelope",
+      "seat": 12,
+      "default": true,
+      "class": "Halfling Bard",
+      "guide_url": "https://www.reddit.com/r/idlechampions/comments/ywaz5z/year_4_champion_guide_penelope_the_halfling/",
+      "specializations": ["Keep Your Friends Close", "Keep Your Future Friends Closer", "Everybody Gets To Be Friends"],
+      "table": {
+        "2":  [525, 406, 189],
+        "3":  [1463, 1039, 391],
+        "4":  [3806, 2463, 735],
+        "5":  [9666, 5667, 1320],
+        "6":  [24314, 12875, 2314],
+        "7":  [60935, 29093, 4003],
+        "8":  [152488, 65584, 6876],
+        "9":  [381370, 147689, 11759],
+        "10": [953574, 332426, 20060]
+      }
     }
   ]
 }

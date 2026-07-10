@@ -14,6 +14,7 @@ Specialization picker for [Idle Champions of the Forgotten Realms](https://www.i
 | 6 | [Lark](https://www.reddit.com/r/idlechampions/comments/1pdir3h/year_9_champion_guide_lark_the_tiefling_bard/) | Tiefling Bard | Yes | Ready |
 | 8 | [Tess](https://www.reddit.com/r/idlechampions/comments/1lq6sdu/year_8_champion_guide_tess_the_wood_elf_rogue/) | Wood Elf Rogue | Yes | Ready |
 | 9 | [King of Shadows](https://www.reddit.com/r/idlechampions/comments/1nvjj7p/year_9_champion_guide_king_of_shadows_the_human/) | Human Wizard | Yes | Ready |
+| 12 | [Penelope](https://www.reddit.com/r/idlechampions/comments/ywaz5z/year_4_champion_guide_penelope_the_halfling/) | Halfling Bard | Yes | Ready |
 
 ## Adding Champion Data
 
