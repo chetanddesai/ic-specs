@@ -143,6 +143,25 @@
         "9":  [381370, 147689, 11759],
         "10": [953574, 332426, 20060]
       }
+    },
+    {
+      "name": "Flint",
+      "seat": 9,
+      "default": false,
+      "class": "Dwarven Fighter",
+      "guide_url": "https://www.reddit.com/r/idlechampions/comments/1vglkf0/year_9_champion_guide_flint_the_dwarven_fighter/",
+      "specializations": ["Fatherly Advice", "Forged in War", "Blood of Reorx"],
+      "table": {
+        "2":  [300, 525, 800],
+        "3":  [700, 1463, 2600],
+        "4":  [1500, 3806, 8000],
+        "5":  [3100, 9666, 24200],
+        "6":  [6300, 24314, 72800],
+        "7":  [12700, 60935, 218600],
+        "8":  [25500, 152488, 656000],
+        "9":  [51100, 381370, 1968200],
+        "10": [102300, 953574, 5904800]
+      }
     }
   ]
 }
