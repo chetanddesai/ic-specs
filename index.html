@@ -237,10 +237,28 @@
 
 
     .seat-bar {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
       gap: 6px;
       margin-bottom: 1.8rem;
+    }
+
+    @media (max-width: 520px) {
+      .seat-bar {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    @media (max-width: 360px) {
+      .seat-bar {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .seat-group {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
     }
 
     .seat-btn {
@@ -499,12 +517,19 @@
         const champs = champsBySeat[seat];
 
         if (!champs) {
+          const group = document.createElement('div');
+          group.className = 'seat-group';
           const btn = document.createElement('div');
           btn.className = 'seat-btn empty';
           btn.innerHTML = `<span class="seat-num">${seat}</span><span class="seat-name">&mdash;</span>`;
-          seatBar.appendChild(btn);
+          group.appendChild(btn);
+          seatBar.appendChild(group);
           continue;
         }
+
+        const group = document.createElement('div');
+        group.className = 'seat-group';
+        const seatBtns = [];
 
         champs.forEach(champ => {
           const isDefault = champ.default === true;
@@ -530,14 +555,25 @@
               applySel(false);
               if (cards[champ.name]) cards[champ.name].style.display = 'none';
             } else {
+              // Deselect other champions in this seat
+              seatBtns.forEach(other => {
+                if (other.champ !== champ && activeChamps.has(other.champ.name)) {
+                  activeChamps.delete(other.champ.name);
+                  other.applySel(false);
+                  if (cards[other.champ.name]) cards[other.champ.name].style.display = 'none';
+                }
+              });
               activeChamps.add(champ.name);
               applySel(true);
               if (cards[champ.name]) cards[champ.name].style.display = '';
             }
           });
 
-          seatBar.appendChild(btn);
+          seatBtns.push({ champ, applySel });
+          group.appendChild(btn);
         });
+
+        seatBar.appendChild(group);
       }
 
       data.champions.forEach(champ => {
