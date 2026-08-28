@@ -162,6 +162,26 @@
         "9":  [51100, 381370, 1968200],
         "10": [102300, 953574, 5904800]
       }
+    },
+    {
+      "name": "Hank",
+      "seat": 1,
+      "default": false,
+      "class": "Human Ranger",
+      "guide_url": "https://www.reddit.com/r/idlechampions/comments/1l3hdet/year_8_champion_guide_hank_the_human_ranger/",
+      "specializations": ["Heart of Heroes", "Arrow Alliance", "Unyielding Unity"],
+      "table": {
+        "2":  [300, 406, 800],
+        "3":  [700, 1039, 2600],
+        "4":  [1500, 2463, 8000],
+        "5":  [3100, 5666, 24200],
+        "6":  [6300, 12875, 72800],
+        "7":  [12700, 29093, 218600],
+        "8":  [25500, 65584, 656000],
+        "9":  [51100, 147689, 1968200],
+        "10": [102300, 332426, 5904800],
+        "11": [204700, 748083, 17714600]
+      }
     }
   ]
 }

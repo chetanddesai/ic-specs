@@ -9,6 +9,7 @@ Specialization picker for [Idle Champions of the Forgotten Realms](https://www.i
 | Seat | Champion | Class | Default | Data |
 |------|----------|-------|---------|------|
 | 1 | [Anson](https://www.reddit.com/r/idlechampions/comments/1q6tyr4/year_9_champion_guide_anson_the_human_fighter/) | Human Fighter | Yes | Ready |
+| 1 | [Hank](https://www.reddit.com/r/idlechampions/comments/1l3hdet/year_8_champion_guide_hank_the_human_ranger/) | Human Ranger | No | Ready |
 | 2 | [Donaar](https://www.reddit.com/r/idlechampions/comments/11vynot/year_2_champion_guide_donaar_the_dragonborn/) | Dragonborn Paladin | Yes | Ready |
 | 3 | [BBEG](https://www.reddit.com/r/idlechampions/comments/143nyf9/year_6_champion_guide_bbeg_the_drow_wizard/) | Drow Wizard | Yes | Ready |
 | 6 | [Lark](https://www.reddit.com/r/idlechampions/comments/1pdir3h/year_9_champion_guide_lark_the_tiefling_bard/) | Tiefling Bard | Yes | Ready |
